@@ -1,4 +1,4 @@
-package com.example;
+package Test2.src.src.test.java.com.example;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
