@@ -1,25 +1,31 @@
 pipeline{
     agent any
+    tools{
+        maven 'maven'
+    }
     stages{
         stage('Git Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/A9RYA6N/Test2', credentialsId:'A9RYA6N/Moh@n9338815000'
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Test'
-            }
-        }
         stage('Build'){
             steps{
-                echo 'Build'
+                sh 'mvn clean package'
             }
         }
-        stage('Deploy'){
+        stage('Test'){
             steps{
-                echo 'Deploy'
+                sh 'mvn test'
             }
         }
+        // stage('Run JAR'){
+        //     steps{
+        //         script{
+        //             def output=sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar',)
+        //             echo "Output from JAR: ${output}"
+        //         }
+        //     }
+        // }
     }
 }
